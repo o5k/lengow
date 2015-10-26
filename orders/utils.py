@@ -7,14 +7,6 @@ import requests
 from .models import Order
 
 
-def json_response(data, status=200):
-    response = {
-        'data': data,
-        'status': status
-    }
-    return JsonResponse(response)
-
-
 def parse_url(request):
     # url = "http://test.lengow.io/orders-test.xml"
     url = request.POST['url'].encode('ascii', 'ignore')

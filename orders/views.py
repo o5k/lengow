@@ -2,7 +2,7 @@ from django.db.models import Q
 from django.shortcuts import render, redirect, get_object_or_404
 
 from .models import Order
-from .utils import json_response, parse_url
+from .utils import parse_url
 
 
 def index(request):
@@ -19,17 +19,14 @@ def index(request):
                                                           'saved': len(result['orders_to_save']),
                                                           'skipped': len(result['orders_invalid']
                                                                          )})
-            # return json_response({'saved': len(result['orders_to_save']), 'skipped': len(result['orders_invalid'])})
         else:
             latest_orders = Order.objects.order_by('id')[:15]
             return render(request, 'orders/orders.html', {'latest_orders': latest_orders,
                                                           'error': result['data']
                                                           })
-            # return json_response(result['data'], 400)
     else:
         latest_orders = Order.objects.order_by('id')[:15]
         return render(request, 'orders/orders.html', {'latest_orders': latest_orders})
-        # json_response('forbidden', 403)
 
 
 def search(request):

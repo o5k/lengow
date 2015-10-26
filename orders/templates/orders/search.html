@@ -34,7 +34,6 @@
         <div class="mui-row">
             <div class="mui-col-md-5 mui-col-sm-5">Marketplace: <strong>{{ result.marketplace }}</strong></div>
             <div class="mui-col-md-5 mui-col-sm-5">N° de commande: {{ result.order_id }}</div>
-{#            <a class="mui-col-md-1 mui-col-sm-1 btn-detail mui-btn--primary" href="">Détails</a>#}
             <a class="mui-col-md-2 mui-col-sm-2 btn-detail mui-btn mui-btn--small mui-btn--primary mui-btn--raised" href="{% url 'order_detail' result.id %}">Détails</a>
 
         </div>
