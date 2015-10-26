@@ -1,0 +1,7 @@
+Django==1.8.5
+argparse==1.2.1
+defusedxml==0.4.1
+djangorestframework==3.2.4
+djangorestframework-xml==1.2.0
+requests==2.8.1
+wsgiref==0.1.2
