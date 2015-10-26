@@ -54,3 +54,19 @@ def search(request):
 def order_detail(request, id):
     order = get_object_or_404(Order, pk=id)
     return render(request, 'orders/order_detail.html', {'order': order})
+
+
+def order_add(request):
+    if request.method == 'GET':
+        return render(request, 'orders/add.html')
+    else:
+        order = Order()
+        order.marketplace = request.POST['marketplace']
+        order.order_id = request.POST['order_id']
+        order.order_purchase_date = request.POST['order_purchase_date'] or '-'
+        order.order_purchase_heure = request.POST['order_purchase_heure'] or '-'
+        order.order_amount = request.POST['order_amount']
+        if order.marketplace is None or order.order_id is None or order.order_amount is None:
+            return render(request, 'orders/add.html', {'error': 'Veuillez remplir tous les champs obligatoires'})
+        order.save()
+        return render(request, 'orders/order_detail.html', {'order': order})

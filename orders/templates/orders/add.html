@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block main %}
+    <h1>Ajouter une commande</h1>
+    <div style="color: red;">{{ error }}</div>
+    <div class="mui-panel" xmlns="http://www.w3.org/1999/html">
+        <form role="form" id="add-command-form" action="{% url 'order_add' %}" method="post">
+            {% csrf_token %}
+            <h4 style="color: red;">{{ error }}</h4>
+            <div class="mui-textfield mui-textfield--float-label">
+                <input type="text" name="marketplace" required>
+                <label>Marketplace</label>
+            </div>
+            <div class="mui-textfield mui-textfield--float-label">
+                <input type="text" name="order_id" required>
+                <label>N° de commande</label>
+            </div>
+            <div class="mui-textfield mui-textfield--float-label">
+                <input type="text" name="order_purchase_date">
+                <label>Date</label>
+            </div>
+            <div class="mui-textfield mui-textfield--float-label">
+                <input type="text" name="order_purchase_heure">
+                <label>Heure</label>
+            </div>
+            <div class="mui-textfield mui-textfield--float-label">
+                <input type="text" name="order_amount" required>
+                <label>Montant</label>
+            </div>
+            <input type="submit" class="mui-btn mui-btn--primary mui-btn--raised" value="Ajouter une commande" />
+        </form>
+    </div>
+
+{% endblock main %}

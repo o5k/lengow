@@ -78,3 +78,9 @@ footer {
 .btn-detail {
   width: 105px;
 }
+
+.btn-add-order {
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+}
