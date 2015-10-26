@@ -2,32 +2,32 @@
 {% load staticfiles %}
 
 {% block main %}
-    <h1>Ajouter une commande</h1>
+    <h1>Modifier une commande</h1>
     <div class="mui-panel" xmlns="http://www.w3.org/1999/html">
-        <form role="form" id="add-command-form" action="{% url 'order_add' %}" method="post">
+        <form role="form" id="add-command-form" action="{% url 'order_update' order.id %}" method="post">
             {% csrf_token %}
             <h4 style="color: red;">{{ error }}</h4>
             <div class="mui-textfield mui-textfield--float-label">
-                <input type="text" name="marketplace" required>
+                <input type="text" name="marketplace" required value="{{ order.marketplace }}">
                 <label>Marketplace</label>
             </div>
             <div class="mui-textfield mui-textfield--float-label">
-                <input type="text" name="order_id" required>
+                <input type="text" name="order_id" required value="{{ order.order_id }}">
                 <label>N° de commande</label>
             </div>
             <div class="mui-textfield mui-textfield--float-label">
-                <input type="text" name="order_purchase_date">
+                <input type="text" name="order_purchase_date" value="{{ order.order_purchase_date }}">
                 <label>Date</label>
             </div>
             <div class="mui-textfield mui-textfield--float-label">
-                <input type="text" name="order_purchase_heure">
+                <input type="text" name="order_purchase_heure" value="{{ order.order_purchase_heure }}">
                 <label>Heure</label>
             </div>
             <div class="mui-textfield mui-textfield--float-label">
-                <input type="text" name="order_amount" required>
+                <input type="text" name="order_amount" required value="{{ order.order_amount }}">
                 <label>Montant</label>
             </div>
-            <input type="submit" class="mui-btn mui-btn--primary mui-btn--raised" value="Ajouter une commande" />
+            <input type="submit" class="mui-btn mui-btn--primary mui-btn--raised" value="Mettre à jour" />
         </form>
     </div>
 

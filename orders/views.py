@@ -70,3 +70,21 @@ def order_add(request):
             return render(request, 'orders/add.html', {'error': 'Veuillez remplir tous les champs obligatoires'})
         order.save()
         return render(request, 'orders/order_detail.html', {'order': order})
+
+
+def order_update(request, id):
+    if request.method == 'GET':
+        order = get_object_or_404(Order, pk=id)
+        return render(request, 'orders/update.html', {'order': order})
+    else:
+        order = get_object_or_404(Order, pk=id)
+        order.marketplace = request.POST['marketplace']
+        order.order_id = request.POST['order_id']
+        order.order_purchase_date = request.POST['order_purchase_date'] or '-'
+        order.order_purchase_heure = request.POST['order_purchase_heure'] or '-'
+        order.order_amount = request.POST['order_amount']
+        if order.marketplace is None or order.order_id is None or order.order_amount is None:
+            return render(request, 'orders/update.html', {'order': order,
+                                                           'error': 'Veuillez remplir tous les champs obligatoires'})
+        order.save()
+        return render(request, 'orders/order_detail.html', {'order': order})
