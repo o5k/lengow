@@ -8,13 +8,13 @@ To get you started you can simply clone the lengow repository, create a virtual 
 
 ### Prerequisites
 
-You need **git** to clone the angular-seed repository. You can get git from http://git-scm.com/.
+You need **git** to clone the lengow repository. You can get git from http://git-scm.com/.
 
 You need also **pip** to install the requirements of the project. It is recommended to have as well **virtualenv** to setup requirements specific to the project in a new virtual environment as well as **virtualenvwrapper** to easily switch between virtual envs. You can get them from http://docs.python-guide.org/en/latest/dev/virtualenvs/
 
-### Clone django-rest-framework-seed
+### Clone lengow
 
-Clone the django-rest-framework-seed repository using git:
+Clone the lengow repository using git:
 ```sh
 $ git clone https://github.com/o5k/lengow.git
 $ cd lengow
