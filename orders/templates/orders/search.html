@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %} Search {% endblock %}
+
+{% block head %}
+    {#<link href="{% static 'css/orders.css' %}" rel="stylesheet">#}
+{% endblock head %}
+
+{% block main %}
+    <h1>Chercher</h1>
+    <div class="mui-panel" xmlns="http://www.w3.org/1999/html">
+        <form role="form" action="{% url 'search' %}">
+            <h4 style="color: red;">{{ error }}</h4>
+            <div class="mui-textfield mui-textfield--float-label">
+                <input type="text" name="q" required>
+                <label>Mot clé à chercher: amazon, cdiscount..</label>
+            </div>
+{#            <button id="add-flux" class="mui-btn mui-btn--primary mui-btn--raised">Ajouter un flux</button>#}
+            <input type="submit" class="mui-btn mui-btn--primary mui-btn--raised" value="Chercher" />
+        </form>
+    </div>
+    {% if not results %}
+        <div class="mui-panel">
+            <h3><strong>Aucune</strong> résultat trouvé, veuillez <strong>réduire</strong> le nombre de mots cherchés.</h3>
+        </div>
+    {% else %}
+        <h1>Résultats trouvés</h1>
+    {% endif %}
+    {% for result in results %}
+    <div class="mui-panel">
+        <div class="mui-row">
+            <div class="mui-col-md-5 mui-col-sm-5">Marketplace: <strong>{{ result.marketplace }}</strong></div>
+            <div class="mui-col-md-5 mui-col-sm-5">N° de commande: {{ result.order_id }}</div>
+{#            <a class="mui-col-md-1 mui-col-sm-1 btn-detail mui-btn--primary" href="">Détails</a>#}
+            <a class="mui-col-md-2 mui-col-sm-2 btn-detail mui-btn mui-btn--small mui-btn--primary mui-btn--raised" href="{% url 'orders_detail' %}">Détails</a>
+
+        </div>
+        <div class="mui-row">
+            <div class="mui-col-md-3 mui-col-sm-3">Date: {{ result.order_purchase_date }}</div>
+            <div class="mui-col-md-3 mui-col-sm-3">Heure: {{ result.order_purchase_heure }}</div>
+            <div class="mui-col-md-3 mui-col-sm-3">Montant: <strong>{{ result.order_amount }}</strong></div>
+        </div>
+    </div>
+    {% endfor %}
+
+{% endblock main %}
+
+{% block scripts %}
+    <script src="{% static 'js/orders.js' %}"></script>
+{% endblock scripts %}
