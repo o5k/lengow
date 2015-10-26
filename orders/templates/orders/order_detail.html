@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block main %}
+    <h1>Détail de commande</h1>
+    <div class="mui-panel">
+        <div class="mui-row">
+            <div class="mui-col-md-6 mui-col-sm-6">Marketplace: <strong>{{ order.marketplace }}</strong></div>
+            <div class="mui-col-md-6 mui-col-sm-5">N° de commande: {{ order.order_id }}</div>
+        </div>
+        <div class="mui-row">
+            <div class="mui-col-md-3 mui-col-sm-3">Date: {{ order.order_purchase_date }}</div>
+            <div class="mui-col-md-3 mui-col-sm-3">Heure: {{ order.order_purchase_heure }}</div>
+            <div class="mui-col-md-3 mui-col-sm-3">Montant: <strong>{{ order.order_amount }}</strong></div>
+        </div>
+    </div>
+
+{% endblock main %}

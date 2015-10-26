@@ -20,6 +20,7 @@
             <input type="submit" class="mui-btn mui-btn--primary mui-btn--raised" value="Chercher" />
         </form>
     </div>
+    {% if not hide_empty_result_text %}
     {% if not results %}
         <div class="mui-panel">
             <h3><strong>Aucune</strong> résultat trouvé, veuillez <strong>réduire</strong> le nombre de mots cherchés.</h3>
@@ -27,13 +28,14 @@
     {% else %}
         <h1>Résultats trouvés</h1>
     {% endif %}
+    {% endif %}
     {% for result in results %}
     <div class="mui-panel">
         <div class="mui-row">
             <div class="mui-col-md-5 mui-col-sm-5">Marketplace: <strong>{{ result.marketplace }}</strong></div>
             <div class="mui-col-md-5 mui-col-sm-5">N° de commande: {{ result.order_id }}</div>
 {#            <a class="mui-col-md-1 mui-col-sm-1 btn-detail mui-btn--primary" href="">Détails</a>#}
-            <a class="mui-col-md-2 mui-col-sm-2 btn-detail mui-btn mui-btn--small mui-btn--primary mui-btn--raised" href="{% url 'orders_detail' %}">Détails</a>
+            <a class="mui-col-md-2 mui-col-sm-2 btn-detail mui-btn mui-btn--small mui-btn--primary mui-btn--raised" href="{% url 'order_detail' result.id %}">Détails</a>
 
         </div>
         <div class="mui-row">

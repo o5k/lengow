@@ -1,5 +1,5 @@
 from django.db.models import Q
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 
 from .models import Order
 from .utils import json_response, parse_url
@@ -41,7 +41,7 @@ def search(request):
         results = Order.objects.filter(Q(marketplace__icontains=querystring) |
                                        Q(order_purchase_date__icontains=querystring) |
                                        Q(order_purchase_heure__icontains=querystring) |
-                                       Q(order_amount=querystring))
+                                       Q(order_amount=querystring)).order_by('-id')
         count = results.count()
 
         return render(request, 'orders/search.html', {
@@ -51,4 +51,9 @@ def search(request):
             'results': results,
         })
     else:
-        return render(request, 'orders/search.html', {'hide_search': True})
+        return render(request, 'orders/search.html', {'hide_empty_result_text': True})
+
+
+def order_detail(request, id):
+    order = get_object_or_404(Order, pk=id)
+    return render(request, 'orders/order_detail.html', {'order': order})

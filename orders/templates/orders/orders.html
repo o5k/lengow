@@ -13,7 +13,7 @@
             <h4 style="color: red;">{{ error }}</h4>
             <div class="mui-textfield mui-textfield--float-label">
                 <input type="text" name="url" required>
-                <label>URL du flux XML à ajouter</label>
+                <label>URL du flux XML à ajouter. example: http://test.lengow.io/orders-test.xml</label>
             </div>
 {#            <button id="add-flux" class="mui-btn mui-btn--primary mui-btn--raised">Ajouter un flux</button>#}
             <input type="submit" class="mui-btn mui-btn--primary mui-btn--raised" value="Ajouter un flux" />
@@ -30,8 +30,9 @@
     {% for order in latest_orders %}
     <div class="mui-panel">
         <div class="mui-row">
-            <div class="mui-col-md-6 mui-col-sm-6">Marketplace: <strong>{{ order.marketplace }}</strong></div>
-            <div class="mui-col-md-6 mui-col-sm-5">N° de commande: {{ order.order_id }}</div>
+            <div class="mui-col-md-5 mui-col-sm-5">Marketplace: <strong>{{ order.marketplace }}</strong></div>
+            <div class="mui-col-md-5 mui-col-sm-5">N° de commande: {{ order.order_id }}</div>
+            <a class="mui-col-md-2 mui-col-sm-2 btn-detail mui-btn mui-btn--small mui-btn--primary mui-btn--raised" href="{% url 'order_detail' order.id %}">Détails</a>
         </div>
         <div class="mui-row">
             <div class="mui-col-md-3 mui-col-sm-3">Date: {{ order.order_purchase_date }}</div>
