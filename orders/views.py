@@ -7,25 +7,25 @@ from .utils import parse_url
 
 def index(request):
     if request.method == 'GET':
-        latest_orders = Order.objects.order_by('id')[:15]
+        latest_orders = Order.objects.order_by('-id')[:15]
         return render(request, 'orders/orders.html', {'latest_orders': latest_orders})
     elif request.method == 'POST':
         result = parse_url(request)
         if result['success']:
             for order in result['orders_to_save']:
                 order.save()
-            latest_orders = Order.objects.order_by('id')[:15]
+            latest_orders = Order.objects.order_by('-id')[:15]
             return render(request, 'orders/orders.html', {'latest_orders': latest_orders,
                                                           'saved': len(result['orders_to_save']),
                                                           'skipped': len(result['orders_invalid']
                                                                          )})
         else:
-            latest_orders = Order.objects.order_by('id')[:15]
+            latest_orders = Order.objects.order_by('-id')[:15]
             return render(request, 'orders/orders.html', {'latest_orders': latest_orders,
                                                           'error': result['data']
                                                           })
     else:
-        latest_orders = Order.objects.order_by('id')[:15]
+        latest_orders = Order.objects.order_by('-id')[:15]
         return render(request, 'orders/orders.html', {'latest_orders': latest_orders})
 
 
